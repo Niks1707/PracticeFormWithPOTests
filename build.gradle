@@ -30,9 +30,9 @@ tasks.withType(Test) {
 
 }
 
-task demoqa(type: Test) {
+task Test (type: Test) {
 
     useJUnitPlatform {
-        includeTags("fullTest")
+        includeTags("Test")
     }
 }

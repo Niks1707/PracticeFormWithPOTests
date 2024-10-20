@@ -3,11 +3,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 @DisplayName("Тест на регистрацию в Practice Form")
+@Tag("Test")
 public class PracticeFormWithPOTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
     @DisplayName("Позитивный тест на регистрацию в Practice Form")
-    @Tag("fullTest")
     @Test
     void fillFormTest() {
         registrationPage.openPage()
