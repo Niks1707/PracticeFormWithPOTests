@@ -1,61 +1,99 @@
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-//@DisplayName("Тест на регистрацию в Practice Form")
+import static io.qameta.allure.Allure.step;
+
+@DisplayName("Тест на регистрацию в Practice Form")
 @Tag("Test")
 public class PracticeFormWithPOTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
-    //@DisplayName("Позитивный тест на регистрацию в Practice Form")
     @Test
+    @Story("Проверка с использованием лямбда шагов через step")
+    @Owner("Genkel Veronika")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link(value = "Testing", url = "https://demoqa.com/automation-practice-form")
+    @DisplayName("Позитивный тест на регистрацию в Practice Form")
     void fillFormTest() {
-        registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setEmail("iivanov@gmail.com")
-                .setGender("Other")
-                .setUserNumber("8800555353")
-                .setDateOfBirth("28","April","1997")
-                .setSubjects("Physic")
-                .setHobby("Sports")
-                .setPicture("test.png")
-                .setAddress("Lenina street")
-                .setState("NCR")
-                .setCity("Gurgaon")
-                .setSubmit()
-                .checkResult("Student Name", "Ivan Ivanov")
-                .checkResult("Gender", "Other")
-                .checkResult("Mobile", "8800555353")
-                .checkResult("Date of Birth", "28 April,1997")
-                .checkResult("Subjects", "Physic")
-                .checkResult("Hobbies", "Sports")
-                .checkResult("Picture", "test.png")
-                .checkResult("Address", "Lenina street")
-                .checkResult("State and City", "NCR Gurgaon")
-                .negativeCheckResult("Student Name", "Ivan Petrov")
-                .setCloseTable();
+        step("Открытие страницы Practice Form", () -> {
+            registrationPage.openPage();
+        });
+        step("Регистрация пользователя", () -> {
+            registrationPage.setFirstName("Ivan");
+            registrationPage.setLastName("Ivanov");
+            registrationPage.setEmail("iivanov@gmail.com");
+            registrationPage.setGender("Other");
+            registrationPage.setUserNumber("8800555353");
+            registrationPage.setDateOfBirth("28","April","1997");
+            registrationPage.setSubjects("Physic");
+            registrationPage.setHobby("Sports");
+            registrationPage.setPicture("test.png");
+            registrationPage.setAddress("Lenina street");
+            registrationPage.setState("NCR");
+            registrationPage.setCity("Gurgaon");
+            registrationPage.setSubmit();
+        });
+        step("Проверка данных", () -> {
+            registrationPage.checkResult("Student Name", "Ivan Ivanov");
+            registrationPage.checkResult("Gender", "Other");
+            registrationPage.checkResult("Mobile", "8800555353");
+            registrationPage.checkResult("Date of Birth", "28 April,1997");
+            registrationPage.checkResult("Subjects", "Physic");
+            registrationPage.checkResult("Hobbies", "Sports");
+            registrationPage.checkResult("Picture", "test.png");
+            registrationPage.checkResult("Address", "Lenina street");
+            registrationPage.checkResult("State and City", "NCR Gurgaon");
+            registrationPage.negativeCheckResult("Student Name", "Ivan Petrov");
+        });
     }
-   // @DisplayName("Позитивный тест на регистрацию в Practice Form с минимальными данными")
+
     @Test
+    @Story("Проверка с использованием лямбда шагов через step")
+    @Owner("Genkel Veronika")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link(value = "Testing", url = "https://demoqa.com/automation-practice-form")
+    @DisplayName("Позитивный тест на регистрацию в Practice Form с минимальными данными")
+
     void minimalFormTest() {
-        registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setGender("Other")
-                .setUserNumber("8800555353")
-                .setDateOfBirth("28", "April", "1997")
-                .setSubmit()
-                .checkResult("Student Name", "Ivan Ivanov")
-                .checkResult("Gender", "Other")
-                .checkResult("Mobile", "8800555353")
-                .checkResult("Date of Birth", "28 April,1997")
-                .setCloseTable();
+
+        step("Открытие страницы Practice Form", () -> {
+            registrationPage.openPage();
+        });
+        step("Регистрация пользователя", () -> {
+            registrationPage.setFirstName("Ivan");
+            registrationPage.setLastName("Ivanov");
+            registrationPage.setGender("Other");
+            registrationPage.setUserNumber("8800555353");
+            registrationPage.setDateOfBirth("28", "April", "1997");
+            registrationPage.setSubmit();
+        });
+
+        step("Проверка данных", () -> {
+            registrationPage.checkResult("Student Name", "Ivan Ivanov");
+            registrationPage .checkResult("Gender", "Other");
+            registrationPage.checkResult("Mobile", "8800555353");
+            registrationPage.checkResult("Date of Birth", "28 April,1997");
+        });
     }
-    //@DisplayName("Негативный тест на регистрацию в Practice Form")
+
     @Test
+    @Story("Проверка с использованием лямбда шагов через step")
+    @Owner("Genkel Veronika")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link(value = "Testing", url = "https://demoqa.com/automation-practice-form")
+    @DisplayName("Негативный тест на регистрацию в Practice Form")
     void negativeFormTest() {
-        registrationPage.openPage()
-                .setSubmit()
-                .negativeCheckForm();
+        step("Открытие страницы Practice Form", () -> {
+            registrationPage.openPage();
+        });
+
+        step("Регистрация пользователя", () -> {
+            registrationPage.setSubmit();
+        });
+        step("Проверка данных", () -> {
+            registrationPage.negativeCheckForm();
+        });
     }
 }
