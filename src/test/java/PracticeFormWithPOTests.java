@@ -2,12 +2,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-@DisplayName("Тест на регистрацию в Practice Form")
+//@DisplayName("Тест на регистрацию в Practice Form")
 @Tag("Test")
 public class PracticeFormWithPOTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
-    @DisplayName("Позитивный тест на регистрацию в Practice Form")
+    //@DisplayName("Позитивный тест на регистрацию в Practice Form")
     @Test
     void fillFormTest() {
         registrationPage.openPage()
@@ -36,7 +36,7 @@ public class PracticeFormWithPOTests extends TestBase {
                 .negativeCheckResult("Student Name", "Ivan Petrov")
                 .setCloseTable();
     }
-    @DisplayName("Позитивный тест на регистрацию в Practice Form с минимальными данными")
+   // @DisplayName("Позитивный тест на регистрацию в Practice Form с минимальными данными")
     @Test
     void minimalFormTest() {
         registrationPage.openPage()
@@ -52,7 +52,7 @@ public class PracticeFormWithPOTests extends TestBase {
                 .checkResult("Date of Birth", "28 April,1997")
                 .setCloseTable();
     }
-    @DisplayName("Негативный тест на регистрацию в Practice Form")
+    //@DisplayName("Негативный тест на регистрацию в Practice Form")
     @Test
     void negativeFormTest() {
         registrationPage.openPage()
