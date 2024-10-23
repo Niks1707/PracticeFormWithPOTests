@@ -7,7 +7,7 @@ repositories {
     mavenCentral()
 }
 
-compileTestJava {
+tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
@@ -30,11 +30,13 @@ dependencies {
             "com.codeborne:selenide:7.5.1",
             "org.junit.jupiter:junit-jupiter:5.11.2",
             "com.github.javafaker:javafaker:1.0.2",
-            "io.qameta.allure:allure-selenide:2.19.0"
+            "io.qameta.allure:allure-selenide:2.19.0",
+            'org.slf4j:slf4j-simple:2.0.7'
     )
 }
 
 tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 
     testLogging {
@@ -43,11 +45,9 @@ tasks.withType(Test) {
             exceptionFormat "short"
         }
     }
-
 }
 
 task simpletest (type: Test) {
-
     useJUnitPlatform {
         includeTags("Test")
     }

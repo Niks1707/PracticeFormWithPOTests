@@ -1,14 +1,18 @@
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import utils.RandomUtils;
+import java.util.Objects;
 import static io.qameta.allure.Allure.step;
 
 @DisplayName("Тест на регистрацию в Practice Form")
 @Tag("Test")
 public class PracticeFormWithPOTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
+    RandomUtils randomUtils = new RandomUtils();
 
     @Test
     @Story("Проверка с использованием лямбда шагов через step")
@@ -46,6 +50,9 @@ public class PracticeFormWithPOTests extends TestBase {
             registrationPage.checkResult("Address", "Lenina street");
             registrationPage.checkResult("State and City", "NCR Gurgaon");
             registrationPage.negativeCheckResult("Student Name", "Ivan Petrov");
+            if (!Objects.equals(Configuration.browser, "firefox")) {
+                registrationPage.checkResult("Picture", randomUtils.getRandomFile());
+            }
         });
     }
 

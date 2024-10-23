@@ -11,11 +11,16 @@ import java.util.Map;
 public class TestBase {
     @BeforeAll
     static void setUp() {
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = System.getProperty("browserSize");
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.timeout = 10000;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://" + System.getProperty("login") + "@" + System.getProperty("remote");
+        Configuration.browser = System.getProperty("browserName","chrome");
+        Configuration.browserSize = System.getProperty("browserSize");
+        Configuration.browserVersion = System.getProperty("browserVersion");
+
         SelenideLogger.addListener("allure", new AllureSelenide());
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
@@ -27,6 +32,10 @@ public class TestBase {
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last Screenshot");
+        if (!Configuration.browser.equals("firefox")) {
+            Attach.pageSource();
+            Attach.browserConsoleLogs();
+        }
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
