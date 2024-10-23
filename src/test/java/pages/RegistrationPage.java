@@ -89,7 +89,7 @@ TableResponsive tableResponsive = new TableResponsive();
         return this;
     }
     public RegistrationPage setSubmit () {
-        submitInput.click();
+        submitInput.scrollTo();
         return this;
     }
 
