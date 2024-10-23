@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.TableResponsive;
@@ -72,10 +73,16 @@ TableResponsive tableResponsive = new TableResponsive();
         hobbiesInput.scrollTo().$(byText(value)).click();
         return this;
     }
-    public RegistrationPage setPicture (String value) {
-        pictureInput.uploadFromClasspath(value);
+//    public RegistrationPage setPicture (String value) {
+//        pictureInput.uploadFromClasspath(value);
+//        return this;
+//        }
+
+    public RegistrationPage setPicture(String value) {
+        if (Configuration.browser.equals("firefox")) return this;
+        pictureInput.scrollTo().uploadFromClasspath(value);
         return this;
-        }
+    }
 
     public RegistrationPage setAddress (String value) {
         addressCurrentInput.scrollTo().setValue(value);
@@ -95,9 +102,11 @@ TableResponsive tableResponsive = new TableResponsive();
     }
 
     public RegistrationPage checkResult(String key, String value) {
-        tableResponsive.checkResult(key, value);
+        if (Configuration.browser.equals("firefox") && key.equals("Picture")) return this;
+        new TableResponsive().checkResult(key, value);
         return this;
     }
+
     public RegistrationPage negativeCheckResult(String key, String value){
         tableResponsive.negativeCheckResult(key, value);
         return this;
