@@ -75,7 +75,7 @@ public class PracticeFormWithPOTests extends TestBase {
 
         step("Проверка данных", () -> {
             registrationPage.checkResult("Student Name", "Ivan Ivanov");
-            registrationPage .checkResult("Gender", "Other");
+            registrationPage.checkResult("Gender", "Other");
             registrationPage.checkResult("Mobile", "8800555353");
             registrationPage.checkResult("Date of Birth", "28 April,1997");
         });

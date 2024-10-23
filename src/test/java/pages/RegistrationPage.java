@@ -77,9 +77,8 @@ TableResponsive tableResponsive = new TableResponsive();
         return this;
     }
     public RegistrationPage setPicture (String value) {
-        if (!Objects.equals(Configuration.browser, "firefox")) return this;
-            pictureInput.scrollTo().uploadFromClasspath(value);
-            return this;
+        pictureInput.uploadFromClasspath(value);
+        return this;
         }
 
     public RegistrationPage setAddress (String value) {
