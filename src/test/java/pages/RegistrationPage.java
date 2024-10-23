@@ -76,11 +76,12 @@ TableResponsive tableResponsive = new TableResponsive();
         hobbiesInput.scrollTo().$(byText(value)).click();
         return this;
     }
-    public void setPicture (String value) {
-        if (!Objects.equals(Configuration.browser, "firefox")) {
+    public RegistrationPage setPicture (String value) {
+        if (!Objects.equals(Configuration.browser, "firefox")) return this;
             pictureInput.scrollTo().uploadFromClasspath(value);
+            return this;
         }
-    }
+
     public RegistrationPage setAddress (String value) {
         addressCurrentInput.scrollTo().setValue(value);
         return this;

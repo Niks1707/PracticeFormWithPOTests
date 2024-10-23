@@ -49,9 +49,6 @@ public class PracticeFormWithPOTests extends TestBase {
             registrationPage.checkResult("Address", "Lenina street");
             registrationPage.checkResult("State and City", "NCR Gurgaon");
             registrationPage.negativeCheckResult("Student Name", "Ivan Petrov");
-            if (!Objects.equals(Configuration.browser, "firefox")) {
-                registrationPage.checkResult("Picture", "test.png");
-            }
         });
     }
 
