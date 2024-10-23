@@ -1,11 +1,8 @@
-import com.codeborne.selenide.Configuration;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import utils.RandomUtils;
-import java.util.Objects;
 import static io.qameta.allure.Allure.step;
 
 @DisplayName("Тест на регистрацию в Practice Form")
