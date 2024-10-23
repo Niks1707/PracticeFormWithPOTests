@@ -33,8 +33,8 @@ public class PracticeFormWithRandomUtilsTests extends TestBase {
                 .setDateOfBirth(day,months,year)
                 .setSubjects(subjects)
                 .setHobby(hobbies)
-                .setPicture(picture)
-                .setAddress(currentAddress)
+                .setPicture(picture);
+        registrationPage.setAddress(currentAddress)
                 .setState(state)
                 .setCity(city)
                 .setSubmit()

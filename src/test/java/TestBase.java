@@ -11,6 +11,7 @@ import java.util.Map;
 public class TestBase {
     @BeforeAll
     static void setUp() {
+
         Configuration.browserSize = System.getProperty("browserSize");
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.timeout = 10000;

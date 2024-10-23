@@ -1,8 +1,12 @@
 package pages;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.TableResponsive;
+
+import java.util.Objects;
+
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -38,15 +42,15 @@ TableResponsive tableResponsive = new TableResponsive();
     }
 
     public RegistrationPage setFirstName (String value) {
-        firstNameInput.setValue(value);
+        firstNameInput.scrollTo().setValue(value);
         return this;
     }
     public RegistrationPage setLastName (String value) {
-        lastNameInput.setValue(value);
+        lastNameInput.scrollTo().setValue(value);
         return this;
     }
     public RegistrationPage setEmail (String value) {
-        emailInput.setValue(value);
+        emailInput.scrollTo().setValue(value);
         return this;
     }
     public RegistrationPage setGender(String value) {
@@ -54,42 +58,43 @@ TableResponsive tableResponsive = new TableResponsive();
         return this;
     }
     public RegistrationPage setUserNumber (String value) {
-        userNumberInput.setValue(value);
+        userNumberInput.scrollTo().setValue(value);
         return this;
     }
 
     public RegistrationPage setDateOfBirth(String day,String month, String year) {
-       calendarInput.click();
+       calendarInput.scrollTo().click();
        calendarComponent.setDate(day, month, year);
        return this;
     }
 
     public RegistrationPage setSubjects(String value) {
-        subjectsInput.setValue(value).pressEnter();
+        subjectsInput.scrollTo().setValue(value).pressEnter();
         return this;
     }
     public RegistrationPage setHobby(String value) {
-        hobbiesInput.$(byText(value)).click();
+        hobbiesInput.scrollTo().$(byText(value)).click();
         return this;
     }
-    public RegistrationPage setPicture (String value) {
-        pictureInput.uploadFromClasspath(value);
-        return this;
+    public void setPicture (String value) {
+        if (!Objects.equals(Configuration.browser, "firefox")) {
+            pictureInput.scrollTo().uploadFromClasspath(value);
+        }
     }
     public RegistrationPage setAddress (String value) {
-        addressCurrentInput.setValue(value);
+        addressCurrentInput.scrollTo().setValue(value);
         return this;
     }
     public RegistrationPage setState (String value) {
-        stateInput.setValue(value).pressEnter();
+        stateInput.scrollTo().setValue(value).pressEnter();
         return this;
     }
     public RegistrationPage setCity (String value) {
-        cityInput.setValue(value).pressEnter();
+        cityInput.scrollTo().setValue(value).pressEnter();
         return this;
     }
     public RegistrationPage setSubmit () {
-        submitInput.scrollTo();
+        submitInput.scrollTo().click();
         return this;
     }
 
@@ -102,7 +107,7 @@ TableResponsive tableResponsive = new TableResponsive();
         return this;
     }
     public RegistrationPage setCloseTable(){
-        closeInput.click();
+        closeInput.scrollTo().click();
         return this;
     }
     public RegistrationPage negativeCheckForm() {
@@ -116,11 +121,11 @@ TableResponsive tableResponsive = new TableResponsive();
         return this;
     }
     public RegistrationPage setFullName (String value) {
-        fullNameInput.setValue(value);
+        fullNameInput.scrollTo().setValue(value);
         return this;
     }
     public RegistrationPage setPermanentAddress (String value) {
-        permanentAddressInput.setValue(value);
+        permanentAddressInput.scrollTo().setValue(value);
         return this;
     }
     public RegistrationPage checkResultTextBox(String key, String value) {

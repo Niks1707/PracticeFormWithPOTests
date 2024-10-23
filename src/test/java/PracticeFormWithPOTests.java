@@ -12,7 +12,6 @@ import static io.qameta.allure.Allure.step;
 @Tag("Test")
 public class PracticeFormWithPOTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
-    RandomUtils randomUtils = new RandomUtils();
 
     @Test
     @Story("Проверка с использованием лямбда шагов через step")
@@ -51,7 +50,7 @@ public class PracticeFormWithPOTests extends TestBase {
             registrationPage.checkResult("State and City", "NCR Gurgaon");
             registrationPage.negativeCheckResult("Student Name", "Ivan Petrov");
             if (!Objects.equals(Configuration.browser, "firefox")) {
-                registrationPage.checkResult("Picture", randomUtils.getRandomFile());
+                registrationPage.checkResult("Picture", "test.png");
             }
         });
     }
